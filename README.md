@@ -5,7 +5,7 @@ A theoretical display-driver and kernel-level graphics layer designed to prevent
 ▼[ Decryption Key: Subtracts RGB Variant ]│
 ▼[ Raw Code Revealed ]
 
-###EXPLANATION OF CONCEPT###
+### *EXPLANATION OF CONCEPT* ###
 
 ### 1. Zero-Contrast Geometric Rendering
 * **Mechanism:** The engine rejects standard font rendering engines. Text data is parsed entirely as raw graphical vectors.
