@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Colour_distortion_Core Engine</title>        <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: monospace;
+        }
+                .Voiding_zone {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 40px auto;
+            width: 400px;
+        }
+            #Black_hole {
+        background-color: #f0f0f0;
+        color: #f0f0f1;
+        padding: 20px;
+        margin-top: 15px;
+        border-radius: 6px;
+        font-weight: bold;
+
+         user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    } 
+    
+    .glitch-active {
+        animation: scramble 0.15s infinite;
+        filter: blur(8px) contrast(200%);
+    }
+
+     @keyframes scramble {
+        0% { transform: translate(0, 0) skewX(0deg); }
+        20% { transform: translate(-8px, 5px) skewX(-15deg); }
+        40% { transform: translate(8px, -5px) skewX(15deg); }
+        60% { transform: translate(-5px, -3px) skewX(5deg); }
+        80% { transform: translate(5px, 5px) skewX(-5deg); }
+        100% { transform: translate(0, 0) skewX(0deg); }
+    }
+    </style>
+</head>
+<body>
+    <div class="Voiding_zone">
+<input type="text" id="usertext" placeholder="Enter secret numbers...">
+<div id="Black_hole">Data Void active.</div>
+</div>
+
+    <script>
+        const inputField = document.getElementById('usertext');
+        const displayVoid = document.getElementById('Black_hole');
+        let hiddenData = "HOPE IS FAITH OF HUMANITY."; 
+        const authHexKey = "33Gf5abd";
+
+        inputField.addEventListener('input', () => {
+            if (inputField.value.length === 0) {
+                displayVoid.innerText = "Data Void active.";
+                displayVoid.style.backgroundColor = "#f0f0f0";
+                displayVoid.style.color = "#f0f0f1";
+            } 
+            // State 2:(The Reveal Primitive)
+            else if (inputField.value === authHexKey) {
+                displayVoid.innerText = hiddenData;
+                displayVoid.style.backgroundColor = "#9400D3"; 
+                displayVoid.style.color = "#ffffff";           
+            } 
+            // State 3:(The Void)
+            else {
+                displayVoid.innerText = inputField.value;
+                displayVoid.style.backgroundColor = "#f0f0f0";
+                displayVoid.style.color = "#f0f0f1";
+            }
+
+            function triggerGlitchDefense() {
+            document.body.classList.add('glitch-active');
+            
+            displayVoid.innerText = "Data Void active.";
+            displayVoid.style.backgroundColor = "#f0f0f0";
+            displayVoid.style.color = "#f0f0f1";
+            inputField.value = ""; 
+            
+            setTimeout(() => {
+                document.body.classList.remove('glitch-active');
+            }, 1500);
+        }
+
+        window.addEventListener('blur', () => {
+            triggerGlitchDefense();
+        });
+        });
+    </script>
+</body>
+</html>
