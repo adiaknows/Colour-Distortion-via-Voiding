@@ -1,9 +1,8 @@
 # Colour-Distortion?
 A theoretical display-driver and kernel-level graphics layer designed to prevent screen-scraping malware, unauthorized video capture, and clipboard hijacking by dynamically camouflaging secure text vectors directly into the operating system's background color spectrum.
-[ Target Data String ] ──► Vector Rendered ──► RGB Delta Shift Applied (+1 Variant)│
-▼[ Visible Result: Zero Contrast Variance ](Screen appears completely uniform/blank)│
-▼[ Decryption Key: Subtracts RGB Variant ]│
-▼[ Raw Code Revealed ]
+When you set up a Solana wallet like Phantom or Backpack on your desktop, the absolute scariest moment is when your 12-word seed phrase or private key is displayed on the screen. If you have hidden malware, a malicious browser extension, or someone is secretly recording your screen, your funds are gone in a second.
+CDV fixes this right at the pixel level by rendering sensitive text completely invisible to cameras, screen recorders, and copy-paste malware.
+
 
 ### *EXPLANATION OF CONCEPT* ###
 
@@ -24,7 +23,13 @@ A theoretical display-driver and kernel-level graphics layer designed to prevent
 
 ## 🛠️ Architecture Track & Requirements
 
-* **Language Profile:** Mapped for compilation in **Zig** or modern **Rust with inline Assembly (ASM)**. This eliminates memory safety errors and runtime garbage collection lags that would cause a critical display driver or graphics stack failure to freeze the entire OS screen.
+* **Language Profile:** Mapped for compilation in **Zig** or modern **C++**. This eliminates memory safety errors and runtime garbage collection lags that would cause a critical display driver or graphics stack failure to freeze the entire OS screen.
 * **System Integration:** Operates directly between the local display server (e.g., X11/Wayland primitives or Windows Desktop Window Manager) and the GPU interface.
+
+## Why C++ & Zig are Necessary
+
+* This repository includes a frontend web prototype built in HTML, CSS, and JavaScript to demonstrate the core color-blending logic, text-selection blocks, and focus sensors.
+* However, during active stress-testing of this web module, a critical architectural boundary was discovered: Web browser event loops introduce a tiny microsecond delay during focus shifts (blur events). A fast, hardware-level screenshot tool can still manage to capture a clean frame during this split-second transition before JavaScript can scramble the screen.
+* My default browser which is Firefox. When I try to take a screenshot, the browser freezes the JavaScript engine so quickly that the active glitch defense cannot even execute in time. This right here is the ultimate proof of why web-browser software like HTML and JavaScript is fundamentally flawed for security tools, and why we absolutely MUST compile natively in ***C++ or  Zig*** to intercept screenshots at the operating system hardware lay
 
 ---
